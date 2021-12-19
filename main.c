@@ -23,17 +23,17 @@ int init_rand()
 
 int roll(int x)
 {
-    srand(time(SEED));
+    init_rand();
     return rand()%x + 1;
 }
 
 int main()
 {
-    srand(time(SEED));
+    init_rand();
 
     float heroes_w = 0;
     float enemys_w = 0;
-    int sample = 5;
+    int sample = 1;
 
     int numOfHeroes = 1;
     int numOfEnemys = 1;
@@ -77,8 +77,8 @@ int main()
     {
         sleep(1);
         
-        heroesInitiative[0] = rand()%20 + 1 + initBonusHeroes[0];
-        enemysInitiative[0] = rand()%20 + 1 + initBonusEnemys[0];
+        heroesInitiative[0] = roll(20) + initBonusHeroes[0];
+        enemysInitiative[0] = roll(20) + initBonusEnemys[0];
 
         if(heroesInitiative[0] > enemysInitiative[0])
         {
@@ -99,14 +99,14 @@ int main()
                 {
                     if(roll(20) + heroesBonusAttack[0] >= enemysAC[0])
                     {
-                        hpEnemys[0] -= rand()%10 + 1 + heroesBonusDamage[0];
+                        hpEnemys[0] -= roll(10) + 1 + heroesBonusDamage[0];
                     }
                 }
                 else if(round[i] == enemysInitiative[0])
                 {
                     if(roll(20) + enemysBonusAttack[0] >= heroesAC[0])
                     {
-                        hpHeroes[0] -= rand()%8 + 1 + enemysBonusDamage[0];
+                        hpHeroes[0] -= roll(8) + enemysBonusDamage[0];
                     }
                 }
             }
@@ -125,34 +125,7 @@ int main()
         hpHeroes[0] = 70;
 
     }
-/*
-    int power = rand() % 20 + 1;
-    int oppower;
-    int sample = 100;
-    float counter_w = 0;
-    float counter_l = 0;
-    
-    printf("Welcome to Project A\n");
 
-    printf("Your number is . . .\n");
-    printf("%i\n", power);
-    printf("Good Luck!\n"); 
-
-    for(int i = 0; i<sample; i++)
-    {
-        oppower = rand()%20 + 1;
-
-        if( power >= oppower)
-        {
-            counter_w ++;
-        }
-        else
-        {
-            counter_l ++;
-        }
-        
-    }
-*/
     printf("\nWinrate: %.2f\n", ((heroes_w/sample) * 100));
 
     return 0;
