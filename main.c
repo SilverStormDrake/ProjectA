@@ -1,6 +1,6 @@
 /*
- This will be something that do some stuff, im not sure yet
-          We will se as we go on, have fun :D
+ D&D AutoBattler by André Luiz(andrelu00)
+
 
  logs:
     Day 1: Dont start whith While Loops, they can run out of control really fast, try For Loops instead.
